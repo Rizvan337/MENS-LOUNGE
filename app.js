@@ -39,7 +39,7 @@ app.use('/admin',adminRouter)
 
 
 app.listen(process.env.PORT,()=>{
-    console.log("Port is running");
+    console.log("Server is running on: http://localhost:3010");
     
 })
 

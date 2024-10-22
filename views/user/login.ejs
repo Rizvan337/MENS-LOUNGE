@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENS LOUNGE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+body {
+  background: #c0c0c0; 
+  font-family: Raleway, sans-serif;
+  color: #666;
+}
+
+.login {
+  margin: 20px auto;
+  padding: 40px 50px;
+  max-width: 300px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 1px 1px 1px #666;
+}
+  .login input {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    margin: 10px 0;
+    padding: 14px 12px;
+    font-size: 16px;
+    border-radius: 2px; 
+    font-family: Raleway, sans-serif;
+  }
+
+.login input[type=text],
+.login input[type=password] {
+  border: 1px solid #c0c0c0;
+  transition: .2s;
+}
+
+.login input[type=text]:hover {
+  border-color: #F44336;
+  outline: none;
+  transition: all .2s ease-in-out;
+} 
+
+.login input[type=submit] {
+  border: none;
+  background: #EF5350;
+  color: white;
+  font-weight: bold;  
+  transition: 0.2s;
+  margin: 20px 0px;
+}
+
+.login input[type=submit]:hover {
+  background: #F44336;  
+}
+
+  .login h2 {
+    margin: 20px 0 0; 
+    color: #EF5350;
+    font-size: 28px;
+  }
+
+.login p {
+  margin-bottom: 40px;
+}
+
+.links {
+  display: table;
+  width: 100%;  
+  box-sizing: border-box;
+  border-top: 1px solid #c0c0c0;
+  margin-bottom: 10px;
+}
+
+.links a {
+  display: table-cell;
+  padding-top: 10px;
+}
+
+.links a:first-child {
+  text-align: left;
+}
+
+.links a:last-child {
+  text-align: right;
+}
+
+  .login h2,
+  .login p,
+  .login a {
+    text-align: center;    
+  }
+
+.login a {
+  text-decoration: none;  
+  font-size: .8em;
+}
+
+.login a:visited {
+  color: inherit;
+}
+
+.login a:hover {
+  text-decoration: underline;
+}
+    </style>
+
+</head>
+<body>
+    <form class="login" id="loginform" method="post" action="/login">
+        <h2>Welcome, User!</h2>
+        <p>Please log in</p>
+        <input type="text" name="email" id="email" placeholder="Email" />
+        <div id="error1" class="error-message"></div>
+        <input type="password" name="password" id="password" placeholder="Password" />
+        <div id="error2" class="error-message"></div>
+        <input type="submit"  value="Log In" />
+        <div class="links">
+          <a href="#">Forgot password</a>
+        </div>
+        <%if(locals.message && message.length>0){%>
+        <div class="alert alert-danger text-center">
+          <%=message%>
+        </div>
+        <%}%>
+          <a href="#">Register</a>
+        </div>
+      </form>
+
+
+
+
+      <script>
+        const emailid = document.getElementById("email");
+        const passid = document.getElementById("password");
+        const error1 = document.getElementById("error1");
+        const error2 = document.getElementById("error2");
+        const loginform = document.getElementById("loginform");
+  
+        function emailValidateChecking(e) {
+          const emailval = emailid.value;
+          const emailpattern =
+            /^[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,4})$/;
+  
+          if (!emailpattern.test(emailval)) {
+            error1.style.display = "block";
+            error1.innerHTML = "Invalid Format";
+          } else {
+            error1.style.display = "none";
+            error1.innerHTML = "";
+          }
+        }
+  
+        function passValidateChecking(e) {
+          const passval = passid.value;
+          
+          if (passval.length < 8) {
+            error2.style.display = "block";
+            error2.innerHTML = "Should contain at least 8 characters";
+          }else {
+            error2.style.display = "none";
+            error2.innerHTML = "";
+          }
+        }
+  
+        document.addEventListener("DOMContentLoaded", function () {
+          loginform.addEventListener("submit", function (e) {
+            emailValidateChecking();
+            passValidateChecking();
+  
+            if (!emailid || !passid || !error1 || !error2 || !loginform) {
+              console.error("One or more elements not found");
+            }
+  
+            if (error1.innerHTML || error2.innerHTML) {
+              e.preventDefault();
+            }
+          });
+        });
+      </script>
+
+
+
+</body>
+</html>
+
+
+

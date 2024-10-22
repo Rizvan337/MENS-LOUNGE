@@ -5,9 +5,8 @@ const adminController = require('../controllers/admin/adminController')
 //Login management
 
 router.get('/login',adminController.loadLogin)
-
-
-
+router.post('/login',adminController.login)
+router.get('/dashboard',adminController.loadDashboard)
 
 
 

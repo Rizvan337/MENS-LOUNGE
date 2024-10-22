@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Royal Hub</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="#">
+    <link href="/admin-assets/css/main.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+<script src="https://kit.fontawesome.com/16d4885483.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.navbar, .main-header {
+    background-color: #141313;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-aside {
+    width: 240px;
+    background-color: #000;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.menu-aside {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 10px 0;
+}
+
+.menu-item a.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #afaf62;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.menu-item a.menu-link:hover,
+.menu-item a.menu-link.active {
+    background-color: #6e7e71;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.menu-item .icon {
+    margin-right: 10px;
+}
+
+.main-wrap {
+    margin-left: 240px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.main-header .col-nav ul.nav {
+    display: flex;
+    align-items: center;
+}
+
+.main-header .col-nav .dropdown-toggle {
+    margin-left: 20px;
+}
+
+.main-header .col-search {
+    display: none;
+}
+
+.screen-overlay {
+    display: none;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 16px;
+    background-color: #ffb400;
+    color: white;
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #ff9800;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-small {
+    padding: 5px 12px;
+    font-size: 12px;
+}
+
+.btn-large {
+    padding: 12px 20px;
+    font-size: 16px;
+}
+
+
+
+/* Search Button */
+.search-btn {   
+    background-color: #1ae43c;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background-color: #100f11;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .main-wrap {
+        margin-left: 200px;
+    }
+
+    .navbar-aside {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-aside {
+        position: fixed;
+        left: -100%;
+        transition: left 0.3s ease;
+    }
+
+    .navbar-aside.open {
+        left: 0;
+    }
+
+    .main-wrap {
+        margin-left: 0;
+    }
+
+    .main-header .col-nav ul.nav {
+        display: none;
+    }
+
+    .main-header .col-search {
+        display: block;
+        flex: 1;
+    }
+
+    .btn-mobile {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 576px) {
+    .menu-item a.menu-link {
+        font-size: 12px;
+    }
+}
+
+/* Header Adjustments */
+.main-header .nav-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+
+
+
+/* Styling for the Logout Button */
+.btn-logout {
+    padding: 10px 20px;
+    background-color: #eee9e9; 
+    color: #e2e8ec; 
+    border-radius: 4px;
+    border: none;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   margin-left: 850px;
+}
+
+.btn-logout:hover {
+    background-color: #fa0f0f; /* Darker red on hover */
+    color: white;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between; /* Aligns search on the left and logout on the right */
+    align-items: center;
+    padding: 10px;
+}
+
+.col-search {
+    flex-grow: 1; /* Ensures the search bar takes available space */
+}
+
+.col-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+
+/* //chatgpt */
+</style>
+</head>
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="#" class="brand-wrap">
+                <!-- <img src=""  class="logo" alt="Royal Hub Dashboard"> -->
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/users"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Customers</span>
+                    </a>
+
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/category"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Category</span>
+                    </a>
+
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/brands"> <i class="icon material-icons md-stars"></i>
+                        <span class="text">Brands</span> </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/addProducts"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Add product</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/products"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/coupon"> <i class="icon material-icons md-class"></i>
+                        <span class="text">Coupon</span> </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/banner"> <i class="icon material-icons md-photo_size_select_actual"></i>
+                        <span class="text">Banner</span> </a>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/orderList"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                </li>
+
+
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/services"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Services</span>
+                    </a>
+
+                </li>
+                
+            </ul>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        
+
+         <header class="main-header navbar">
+            <div class="col-search">
+                <input type="text" class="search-input" placeholder="Search...">
+                <button class="search-btn">Search</button>
+            </div>
+            <div class="col-nav">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="/admin/logout" class="btn-logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        
+        
