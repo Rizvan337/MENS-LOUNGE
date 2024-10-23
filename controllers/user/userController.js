@@ -86,6 +86,10 @@ const signup = async (req,res)=>{
     }
 }
 
+const logout = async(req,res)=>{
+    req.session.user = null
+    res.redirect('/login')
+}
 
 
 module.exports = {
@@ -94,4 +98,5 @@ module.exports = {
     loadHomePage,
     loadSignup,
     signup,
+    logout,
 }
